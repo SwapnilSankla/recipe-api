@@ -32,5 +32,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     created_on = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.name
+
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag')
+    price = models.FloatField()

@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from user import urls
 from tag import urls as tag_urls
+from recipe import urls as recipe_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', include(urls)),
     path('api/tag/', include(tag_urls)),
+    path('api/recipe/', include(recipe_urls)),
 ]
